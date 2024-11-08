@@ -4,14 +4,23 @@ jobs:
   deploy-react-app:
     runs-on: ubuntu-latest
     steps:
-      - name: clone the repository
+      - name: Clone the repository
         uses: actions/checkout@v4
         
-      - name: install npm packages
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Specify the Node.js version if needed
+
+      - name: Install dependencies
         run: npm install
+        working-directory: ./my-app
         
-      - name: npm run
+      - name: Build the React app
         run: npm run build
+        working-directory: ./my-app
         
-      - name: test npm
-        run: npm run test
+      - name: Run tests
+        run: npm test
+        working-directory: ./my-app
+        

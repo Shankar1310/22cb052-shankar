@@ -23,4 +23,9 @@ jobs:
       - name: Run tests
         run: npm test
         working-directory: ./my-app
-        
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./my-app/build
